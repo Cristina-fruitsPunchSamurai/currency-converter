@@ -12,14 +12,15 @@ function App() {
 
   const [displayCurrencies, setDisplayCurrencies] = useState(true);
   const [amount, setAmount] = useState(0);
+  const [choosedCurrency, setChoosedCurrency] = useState('Mexican Peso')
 
 
   return (
     <>
       <Header amount={amount} setAmount={setAmount} setDisplayCurrencies={setDisplayCurrencies} displayCurrencies={displayCurrencies} />
       {/* <Likes setLikes={setLikes} /> */}
-      {displayCurrencies && <Currencies currencyList={currencies}/>}
-      <Resultat amount={amount} currency={currencies[18]}/>
+      {displayCurrencies && <Currencies currencyList={currencies} choosedCurrency={choosedCurrency} setChoosedCurrency={setChoosedCurrency}/>}
+      <Resultat amount={amount} choosedCurrency={choosedCurrency}/>
     </>
   )
 }

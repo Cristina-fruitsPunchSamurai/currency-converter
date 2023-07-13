@@ -9,19 +9,15 @@ interface HeaderObject {
     rate: number;
 }
 
-export default function Currencies({currencyList} : HeaderProps) {
+export default function Currencies({currencyList, choosedCurrency, setChoosedCurrency} : HeaderProps) {
 
-    const handleClick = (e) => {
-        const value = e.target.value;
-    console.log(value)
-    }
 
     return (
         <ul className="currency-list">
             <p className="currency-list-title">Currencies</p>
             {currencyList.map((currency : HeaderObject) => (
             //pour la key on a pas d'id
-                <li className="currency-list-text" onClick={handleClick} key={currency.name}>{currency.name}</li>
+                <li className="currency-list-text" key={currency.name} onClick={() => { setChoosedCurrency(currency)}}>{currency.name}</li>
 
             ))}
         </ul>
