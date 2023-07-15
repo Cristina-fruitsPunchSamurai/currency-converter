@@ -1,3 +1,8 @@
+main {
+    background-color: #fff;
+    width: 40rem;
+}
+
 .currency-list {
     width: 40rem;
     padding: 0.8rem;
@@ -13,6 +18,7 @@
         font-weight: 700;
         color: #bb5432;
         font-size: 1.2em;
+        margin-bottom: 1.2rem;
     }
 
     &-text {
@@ -32,4 +38,9 @@
         width: 100%;
     }
 
+}
+
+.currency-searchBar{
+    width: 20rem;
+    margin-bottom: 1.2rem;
 }

@@ -31,7 +31,7 @@ export default function Likes({setLikes}) {
 
 
 
-    <button onClick={() => setLikes((prevSate) => prevSate + 1)} className="likes">
+    <button onClick={() => setLikes((prevState) => prevState + 1)} className="likes">
     Ajouter un like
     </button>
             <p>Nombre de likes : </p>
