@@ -1,10 +1,11 @@
 import './currencies.scss'
 //Use state
-import { useState } from "react"
+import { useState} from "react"
+
 
 interface HeaderProps {
-    currencyList : HeaderObject[]
-    setChoosedCurrency : any;
+    currenciesData : HeaderObject[]
+    setSelectedCurrency: any;
     search: any;
     setSearch :any;
 }
@@ -14,52 +15,34 @@ interface HeaderObject {
     rate: number;
 }
 
-export default function Currencies({currencyList, setChoosedCurrency} : HeaderProps) {
+export default function Currencies({ currenciesData, setSelectedCurrency } : HeaderProps) {
 
     const [search, setSearch] = useState("")
 
-    // je vais filtrer mon tableau de data passé en props 'CurrencyList'
-    function handleSearch(event: React.ChangeEvent<HTMLInputElement>){
-        setSearch(event.target.value )
+    const handleChangeSearch = (event : any) => (setSearch(event.target.value))
 
-        const filteredCurrencies = currencyList.filter((c) => {
-            return c.name.toLowerCase().includes(search.toLocaleLowerCase())
-        })
-
-        filteredCurrencies.map((c) =>
-            <li className="currency-list-text" key={c.name} onClick={() => {
-            setChoosedCurrency(c)
-        }}> {c.name}</li > )
-
-
-
-        // let searchKeyWordArray = currencyList.filter((currency) => currency.name === search);
-        // searchKeyWordArray.map((element) => (
-        //     <li className="currency-list-text" key={element.name} onClick={() => {
-        //         setChoosedCurrency(element)
-        //     }}>{element.name}</li>
-
-    }
-
+    const filteredCurrencies = currenciesData.filter((c) => (
+        c.name.toLowerCase().includes(search.toLowerCase())
+    ))
 
     return (
         <main>
             <input
                 type="text"
-                onChange={handleSearch}
-                value={search}
-                placeholder="Chercher une devise"
-                className="currency-searchBar"/>
+                placeholder="devise"
+                onChange={handleChangeSearch}
+                value={search} />
 
             <ul className="currency-list">
                 <li className="currency-list-title">Currencies</li>
-
-                {currencyList.map((currency : HeaderObject) => (
-                //pour la key on a pas d'id
-                    <li className="currency-list-text" key={currency.name} onClick={() => {
-                        setChoosedCurrency(currency)}}>{currency.name}</li>
+                {/* {currenciesData.map((c) => (
+                    <li className="currency-list-text" key={c.name} onClick={() => setSelectedCurrency(c) }>
+                    {c.name} </li>
+                ) )} */}
+                {filteredCurrencies.map((c) => (
+                    <li className="currency-list-text" key={c.name} onClick={() => setSelectedCurrency(c)}>
+                        {c.name} </li>
                 ))}
-
 
             </ul>
         </main>

@@ -8,19 +8,25 @@ interface HeaderProps {
     displayCurrencies: any;
 }
 
-export default function Header({ amount, setAmount, setDisplayCurrencies, displayCurrencies, } : HeaderProps) {
+function Header({ amount, setAmount, displayCurrencies, setDisplayCurrencies } : HeaderProps) {
+
+    const handleChangeAmount = (event : any) => (setAmount(Number(event.target.value)))
+
+    const handleClickDisplay = () => (setDisplayCurrencies(prevDisplayCurrencies => !prevDisplayCurrencies))
+
     return (
         <header className="header">
             <h1 className="header-title"> Converter </h1>
             <input
-                type="number"
-                onChange={(event) => setAmount(event.target.value)}
+                type='number'
+                placeholder='amount'
                 value={amount}
+                onChange={handleChangeAmount}
             />
-            {amount > 1 ? <p className="header-number"> {amount} euros </p> : <p className="header-number">  {amount} euro</p> }
-            <button onClick={() => setDisplayCurrencies((prevState) => !prevState)}>
-                {displayCurrencies ? "MASQUER LA LISTE" : "AFFICHER LA LISTE"}
-            </button>
+            <p>{amount}</p>
+            <button className='header-btn' onClick={handleClickDisplay}> {displayCurrencies ? 'Hide currencies' : 'Show currencies'}</button>
         </header>
     )
 }
+
+export default Header;

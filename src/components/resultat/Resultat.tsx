@@ -2,22 +2,21 @@
 import './resultat.scss'
 
 interface ResultatProps {
-    currencyList: ResultatObject[]
-    choosedCurrency : any;
+    amount :number;
+    selectedCurrency: any;
 }
 
-interface ResultatObject {
-    name: string;
-    rate: number;
-}
+
 //{amount, currency, likes}
 
-export default function Resultat({amount, choosedCurrency} :ResultatProps) {
+export default function Resultat({ amount, selectedCurrency } :ResultatProps) {
+
+    const rateConversion = () => ((selectedCurrency.rate * amount).toFixed(2))
+
     return (
         <section className="resultat">
-            <p className="resultat-number"> {(choosedCurrency.rate * amount).toFixed(2)} </p>
-            <p className="resultat-country">{choosedCurrency.name}</p>
-            {/* <h1 className='likes'>{likes}</h1> */}
+            <p className="resultat-number">{rateConversion()}</p>
+            <p className="resultat-country">{selectedCurrency.name}</p>
         </section>
     )
 }
