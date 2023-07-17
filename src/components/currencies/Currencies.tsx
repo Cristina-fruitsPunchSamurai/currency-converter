@@ -3,48 +3,58 @@ import './currencies.scss'
 import { useState} from "react"
 
 
-interface HeaderProps {
-    currenciesData : HeaderObject[]
-    setSelectedCurrency: any;
-    search: any;
-    setSearch :any;
+interface CurrenciesProps {
+    currenciesData : any;
+    setSelectedCurrency: React.Dispatch<React.SetStateAction<{
+        description: string;
+        code: string;
+    }>>;
 }
 
-interface HeaderObject {
-    name: string;
-    rate: number;
-}
+// interface HeaderObject {
+//     description: string;
+//     code: string;
+// }
 
-export default function Currencies({ currenciesData, setSelectedCurrency } : HeaderProps) {
+function Currencies({ currenciesData, setSelectedCurrency } : CurrenciesProps) {
 
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState<string>("")
+
+    const handleClick = (c: any) => (setSelectedCurrency(c))
 
     const handleChangeSearch = (event : any) => (setSearch(event.target.value))
 
-    const filteredCurrencies = currenciesData.filter((c) => (
-        c.name.toLowerCase().includes(search.toLowerCase())
+    const filteredCurrencies = currenciesData?.filter((c:any) => (
+        c.description.toLowerCase().includes(search.toLowerCase())
     ))
 
-    return (
-        <main>
-            <input
-                type="text"
-                placeholder="devise"
-                onChange={handleChangeSearch}
-                value={search} />
-
+    return currenciesData ? (
+        <main className="currency">
+            <div className="currency-content">
+                <input
+                    type="text"
+                    placeholder="devise"
+                    onChange={handleChangeSearch}
+                    value={search} />
+            </div>
             <ul className="currency-list">
                 <li className="currency-list-title">Currencies</li>
-                {/* {currenciesData.map((c) => (
-                    <li className="currency-list-text" key={c.name} onClick={() => setSelectedCurrency(c) }>
-                    {c.name} </li>
-                ) )} */}
-                {filteredCurrencies.map((c) => (
-                    <li className="currency-list-text" key={c.name} onClick={() => setSelectedCurrency(c)}>
-                        {c.name} </li>
-                ))}
+                {filteredCurrencies.map((currency : any) => (
+                    <li className="currency-list-text" key={currency.code}>
+                        <div onClick={() => handleClick(currency)}
+                            onKeyDown={() => handleClick(currency)}
+                            role="button"
+                            aria-description={`permet de convertir la somme définie en ${currency.description}`}
+                            tabIndex={0}>
+                            {currency.description}
+                        </div>
 
+                </li>
+                ))}
             </ul>
+
         </main>
-    )
+    ) : (<div> Loading ...</div>)
 }
+
+export default Currencies;

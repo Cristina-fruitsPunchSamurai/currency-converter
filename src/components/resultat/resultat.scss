@@ -1,19 +1,19 @@
 .resultat {
-    background-color: #ffffff;
+    color:#333;
     padding: 0.8rem;
     width: 40rem;
     height: auto;
     font-family: 'League Spartan', sans-serif;
-    ;
+    background-color: #7a5af5;
 
     &-number{
-        color: #bb5432;
+        color: #333;
         font-size: 2.3em;
         font-weight: 700;
     }
 
     &-country{
-        color: #bb5432;
+        color: #333;
         font-size: 2em;
         font-weight: 300;
     }

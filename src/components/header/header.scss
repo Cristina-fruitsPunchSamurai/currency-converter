@@ -1,5 +1,6 @@
 .header{
-    background-color: #bb5432;
+    background-color: #7a5af5;
+    color: #333;
     width: 40rem;
     padding: 0.8rem;
     font-family: 'League Spartan', sans-serif;
@@ -11,5 +12,20 @@
 
     &-number{
         font-size: 1.5em;
+    }
+
+    &-btn {
+        font-size: 0.8rem;
+        cursor: pointer;
+        border: none ;
+        border-radius: 15px;
+        background-color: #2f2b3a;
+        color: #ffffff;
+        width: 130px;
+        height: 50px;
+    }
+
+    &-amount {
+        font-size: 1.3rem;
     }
 }

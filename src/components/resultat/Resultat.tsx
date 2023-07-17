@@ -1,5 +1,6 @@
 
 import './resultat.scss'
+import { useEffect, useState } from "react";
 
 interface ResultatProps {
     amount :number;
@@ -7,16 +8,28 @@ interface ResultatProps {
 }
 
 
-//{amount, currency, likes}
-
 export default function Resultat({ amount, selectedCurrency } :ResultatProps) {
 
-    const rateConversion = () => ((selectedCurrency.rate * amount).toFixed(2))
+    ///////// STATE /////////
+    const [result, setResult] = useState(0);
+
+    ///////// EFFET /////////
+    useEffect(() => {
+        const convert = async () => {
+            const res = await fetch(`https://api.exchangerate.host/convert?from=EUR&to=${selectedCurrency.code}&amount=${amount}`)
+            const data = await res.json()
+            setResult(data.result)
+        }
+        convert()
+    }, [selectedCurrency, amount])
+
+
+    //const rateConversion = () => ((selectedCurrency.rate * amount).toFixed(2))
 
     return (
         <section className="resultat">
-            <p className="resultat-number">{rateConversion()}</p>
-            <p className="resultat-country">{selectedCurrency.name}</p>
+            <p className="resultat-number">{result?.toFixed(2)}</p>
+            <p className="resultat-country">{selectedCurrency.description}</p>
         </section>
     )
 }

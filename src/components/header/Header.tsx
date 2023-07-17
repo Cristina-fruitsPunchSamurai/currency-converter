@@ -3,14 +3,14 @@ import './header.scss'
 
 interface HeaderProps {
     amount: number;
-    setAmount: any;
-    setDisplayCurrencies: any;
-    displayCurrencies: any;
+    setAmount: React.Dispatch<React.SetStateAction<number>>;
+    setDisplayCurrencies: React.Dispatch<React.SetStateAction<boolean>>;
+    displayCurrencies: boolean;
 }
 
 function Header({ amount, setAmount, displayCurrencies, setDisplayCurrencies } : HeaderProps) {
 
-    const handleChangeAmount = (event : any) => (setAmount(Number(event.target.value)))
+    const handleChangeAmount = (event : any) => (Number(setAmount(event.target.value)))
 
     const handleClickDisplay = () => (setDisplayCurrencies(prevDisplayCurrencies => !prevDisplayCurrencies))
 
@@ -23,7 +23,7 @@ function Header({ amount, setAmount, displayCurrencies, setDisplayCurrencies } :
                 value={amount}
                 onChange={handleChangeAmount}
             />
-            <p>{amount}</p>
+            <p className="header-amount">{amount} {amount > 1 ? "euros" : "euro"}</p>
             <button className='header-btn' onClick={handleClickDisplay}> {displayCurrencies ? 'Hide currencies' : 'Show currencies'}</button>
         </header>
     )

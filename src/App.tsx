@@ -3,26 +3,40 @@ import data from '../data/currencies'
 import Header from './components/header/Header'
 import Currencies from './components/currencies/Currencies'
 import Resultat from './components/resultat/Resultat'
-//import Likes from './components/likes/Likes'
 
-//Use state
-import { useState } from 'react'
+///////// HOOKS /////////
+import { useState, useEffect } from 'react'
 
 function App() {
 
   ////////// STATES /////////
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState<number>(1);
   const [selectedCurrency, setSelectedCurrency] = useState({
-    name: 'Mexican Peso',
-    rate: 21.229867
+    description: 'Mexican Peso',
+    code: 'MXN',
   });
-  const [displayCurrencies, setDisplayCurrencies] = useState(true);
+  //console.log(selectedCurrency)
+  const [displayCurrencies, setDisplayCurrencies] = useState<boolean>(true);
+  const [apiData, setApiData] = useState(null)
+console.log( apiData)
+
+///////// USE EFFECT /////////
+  useEffect(() => {
+      const fetchData = async() => {
+      const url = 'https://api.exchangerate.host/symbols'
+      const result = await fetch(url)
+      const data = await result.json()
+      setApiData(Object.values(data.symbols))
+      }
+
+      fetchData()
+  }, []);
 
 
   return (
     <>
       <Header amount={amount} setAmount={setAmount} displayCurrencies={displayCurrencies} setDisplayCurrencies={setDisplayCurrencies} />
-      {displayCurrencies && <Currencies currenciesData={data} setSelectedCurrency={setSelectedCurrency} />}
+      {displayCurrencies && <Currencies currenciesData={apiData} setSelectedCurrency={setSelectedCurrency} />}
       <Resultat amount={amount} selectedCurrency={selectedCurrency} />
     </>
   )

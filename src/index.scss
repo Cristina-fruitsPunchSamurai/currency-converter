@@ -1,8 +1,12 @@
 
 #root {
-    height: 100vh;
-
-    padding: 2rem;
+  width: 40rem;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   }
 
 
@@ -12,6 +16,7 @@ body {
   place-items: center;
   min-width: 320px;
   font-family: 'League Spartan', sans-serif;
-  background-color: #f1c5b6;
+  background-color: #1a1625;
+
 }
 

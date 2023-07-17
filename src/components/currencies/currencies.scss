@@ -1,12 +1,24 @@
-main {
-    background-color: #fff;
+main{
     width: 40rem;
 }
 
+.currency-content{
+    background-color: #46424f;
+    width: 40rem;
+    padding: 0.8rem;
+}
+
+input{
+    width: 20rem;
+    border-radius: 5px;
+    border: 2px solid #5e43f3;
+    text-align: center;
+}
 .currency-list {
     width: 40rem;
     padding: 0.8rem;
-    background-color: #fff;
+    background-color: #46424f;
+    color: #fff;
     list-style-type: none;
     height: 20rem;
     text-align: left;
@@ -16,15 +28,15 @@ main {
 
     &-title{
         font-weight: 700;
-        color: #bb5432;
-        font-size: 1.2em;
+        color: #fff;
+        font-size: 1.3em;
         margin-bottom: 1.2rem;
     }
 
     &-text {
         font-family: 'League Spartan', sans-serif;
-        border-bottom: 0.6px solid #bb5432;
-        color:#bb5432;
+        border-bottom: 0.6px solid #ba9ffb;
+        color: #fff;
         font-weight: 500;
         font-size: 1.2em;
         margin-bottom: 1.2rem;
@@ -38,9 +50,4 @@ main {
         width: 100%;
     }
 
-}
-
-.currency-searchBar{
-    width: 20rem;
-    margin-bottom: 1.2rem;
 }
