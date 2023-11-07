@@ -12,31 +12,29 @@ function App() {
   ////////// STATES /////////
   const [amount, setAmount] = useState<number>(1);
   const [selectedCurrency, setSelectedCurrency] = useState({
-    description: 'Mexican Peso',
-    code: 'MXN',
+    name: 'Mexican Peso',
+    rate: 20.5,
   });
-  //console.log(selectedCurrency)
   const [displayCurrencies, setDisplayCurrencies] = useState<boolean>(true);
-  const [apiData, setApiData] = useState(null)
-console.log( apiData)
+  //const [apiData, setApiData] = useState(null)
 
 ///////// USE EFFECT /////////
-  useEffect(() => {
-      const fetchData = async() => {
-      const url = 'https://api.exchangerate.host/symbols'
-      const result = await fetch(url)
-      const data = await result.json()
-      setApiData(Object.values(data.symbols))
-      }
+  // useEffect(() => {
+  //     const fetchData = async() => {
+  //     const url = 'https://api.exchangerate.host/live?access_key=key'
+  //     const result = await axios.get(url)
+  //     console.log(result.data)
+  //     setApiData(result.data)
+  //     }
 
-      fetchData()
-  }, []);
+  //     fetchData()
+  // }, []);
 
 
   return (
     <>
       <Header amount={amount} setAmount={setAmount} displayCurrencies={displayCurrencies} setDisplayCurrencies={setDisplayCurrencies} />
-      {displayCurrencies && <Currencies currenciesData={apiData} setSelectedCurrency={setSelectedCurrency} />}
+      {displayCurrencies && <Currencies currenciesData={data} setSelectedCurrency={setSelectedCurrency} />}
       <Resultat amount={amount} selectedCurrency={selectedCurrency} />
     </>
   )

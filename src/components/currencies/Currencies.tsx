@@ -25,7 +25,7 @@ function Currencies({ currenciesData, setSelectedCurrency } : CurrenciesProps) {
     const handleChangeSearch = (event : any) => (setSearch(event.target.value))
 
     const filteredCurrencies = currenciesData?.filter((c:any) => (
-        c.description.toLowerCase().includes(search.toLowerCase())
+        c.name.toLowerCase().includes(search.toLowerCase())
     ))
 
     return currenciesData ? (
@@ -39,14 +39,14 @@ function Currencies({ currenciesData, setSelectedCurrency } : CurrenciesProps) {
             </div>
             <ul className="currency-list">
                 <li className="currency-list-title">Currencies</li>
-                {filteredCurrencies.map((currency : any) => (
-                    <li className="currency-list-text" key={currency.code}>
+                {filteredCurrencies?.map((currency : any, index :any) => (
+                    <li className="currency-list-text" key={index}>
                         <div onClick={() => handleClick(currency)}
                             onKeyDown={() => handleClick(currency)}
                             role="button"
-                            aria-description={`permet de convertir la somme définie en ${currency.description}`}
+                            aria-description={`permet de convertir la somme définie en ${currency.name}`}
                             tabIndex={0}>
-                            {currency.description}
+                            {currency.name}
                         </div>
 
                 </li>
